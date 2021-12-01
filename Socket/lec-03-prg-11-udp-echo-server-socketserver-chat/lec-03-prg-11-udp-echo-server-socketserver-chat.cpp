@@ -105,21 +105,8 @@ int main()
             else if(YN == false)
                 cout << "> ignores a message from un-registered client" << endl;
             else
-            {
                 cout << "> received ('" << RecvData << "') and echoed to '" << Cli_List.size() << " clients'" << endl;
-                vector<SOCKADDR_IN>::iterator iter = Cli_List.begin();
-                for (int i = 0; i < Cli_List.size(); i++)
-                {
-                    if (Cli_List[i].sin_port != ClientAddr.sin_port)
-                    {
-                        YN = true; // true면 같은 게 있다.
-                        break;
-                    }
-                    iter++;
-                }
-            }
         }
-
         sendto(ServerSocket, RecvData, Recv_Size, 0, (struct sockaddr*)&ClientAddr, sizeof(ClientAddr));
     }
     closesocket(ServerSocket);
