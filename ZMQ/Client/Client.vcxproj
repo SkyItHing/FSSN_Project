@@ -152,7 +152,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lec-05-prg-02-req-rep-basic-client.cpp" />
-    <ClCompile Include="lec-05-prg-04-pub-sub-basic-client.cpp" />
+    <ClCompile Include="lec-05-prg-04-pub-sub-basic-client.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

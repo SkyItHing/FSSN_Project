@@ -16,7 +16,7 @@ int main(void)
         char buffer[10];
         zmq_recv(responder, buffer, 10, 0);
         printf("Received Hello\n");
-        Sleep(500);          //  Do some 'work'
+        Sleep(1500);          //  Do some 'work'
         zmq_send(responder, "World", 5, 0);
     }
     return 0;
