@@ -8,6 +8,23 @@
 #define BufferSize 1024
 using namespace std;
 
+void RecvSend(SOCKET Serv_Socket, SOCKET Cli_Socket, SOCKADDR_IN Cli_Addr)
+{
+	while (1)
+	{
+		int ClientSize = sizeof(Cli_Addr);
+		char RecvData[BufferSize] = {};
+		recv(Cli_Socket, RecvData, sizeof(RecvData), 0);
+		send(Cli_Socket, RecvData, strlen(RecvData), 0);
+		cout << "> echoed : " << RecvData << endl;
+		if (strcmp(RecvData, "quit") == 0)
+		{
+			Cli_Socket = accept(Serv_Socket, (SOCKADDR*)&Cli_Addr, &(ClientSize));
+			cout << "> Client connected IP address = " << inet_ntoa(Cli_Addr.sin_addr) << " with Port Number " << ntohs(Cli_Addr.sin_port) << endl;
+		}
+	}
+}
+
 int main()
 {
 	cout << "> echo-server is activated" << endl;
@@ -27,20 +44,13 @@ int main()
 	listen(ServerSocket, SOMAXCONN);
 
 	SOCKADDR_IN ClientAddr = {};
-	int ClientSize = sizeof(ClientAddr);
+	int ClientSize = sizeof(ClientAddr);	
 	SOCKET ClientSocket = accept(ServerSocket, (SOCKADDR*)&ClientAddr, &(ClientSize));
 
 	cout << "> Client connected IP address = " << inet_ntoa(ClientAddr.sin_addr) << " with Port Number " << ntohs(ClientAddr.sin_port) << endl;
 
 	while (1)
-	{
-		char RecvData[BufferSize] = {};
-		recv(ClientSocket, RecvData, BufferSize, 0);
-		send(ClientSocket, RecvData, strlen(RecvData), 0);
-		cout << "> echoed : " << RecvData << endl;
-		if (strcmp(RecvData, "quit") == 0)
-			break;
-	}
+		RecvSend(ServerSocket, ClientSocket, ClientAddr);
 
 	closesocket(ClientSocket);
 	closesocket(ServerSocket);

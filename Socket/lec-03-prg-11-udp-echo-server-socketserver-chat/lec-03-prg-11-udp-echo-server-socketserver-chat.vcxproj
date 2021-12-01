@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{c0e3c693-c79f-4cef-ba2d-1d83d052b055}</ProjectGuid>
-    <RootNamespace>lec03prg01tcpechoserver</RootNamespace>
+    <ProjectGuid>{fef163c8-8d63-4a52-b829-931e0f4706f8}</ProjectGuid>
+    <RootNamespace>lec03prg11udpechoserversocketserverchat</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lec-03-prg-01-tcp-echo-server.cpp" />
+    <ClCompile Include="lec-03-prg-11-udp-echo-server-socketserver-chat.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -23,8 +23,27 @@ int main()
 	ServerSocketAddr.sin_port = htons(PORT);
 	ServerSocketAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
-	bind(ServerSocket, (SOCKADDR*)&ServerSocketAddr, sizeof(ServerSocketAddr));
-	listen(ServerSocket, SOMAXCONN);
+	if (ServerSocket != INVALID_SOCKET)
+	{
+		try
+		{
+			if (bind(ServerSocket, (SOCKADDR*)&ServerSocketAddr, sizeof(ServerSocketAddr)) == SOCKET_ERROR)
+			{
+				cout << "> bind() failed and program terminated" << endl;
+				closesocket(ServerSocket);
+			}
+		}
+		catch (exception&)
+		{
+			cout << "> bind() failed by exception" << endl;
+			closesocket(ServerSocket);
+		}
+		if (listen(ServerSocket, SOMAXCONN) == SOCKET_ERROR)
+		{
+			cout << "> listen() failed and program terminated" << endl;
+			closesocket(ServerSocket);
+		}
+	}
 
 	SOCKADDR_IN ClientAddr = {};
 	int ClientSize = sizeof(ClientAddr);
@@ -32,7 +51,7 @@ int main()
 
 	cout << "> Client connected IP address = " << inet_ntoa(ClientAddr.sin_addr) << " with Port Number " << ntohs(ClientAddr.sin_port) << endl;
 
-	while (1)
+	while (ClientSocket != INVALID_SOCKET)
 	{
 		char RecvData[BufferSize] = {};
 		recv(ClientSocket, RecvData, BufferSize, 0);

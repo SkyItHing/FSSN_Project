@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{c0e3c693-c79f-4cef-ba2d-1d83d052b055}</ProjectGuid>
-    <RootNamespace>lec03prg01tcpechoserver</RootNamespace>
+    <ProjectGuid>{797b29fe-9750-4252-804e-453e6805dc82}</ProjectGuid>
+    <RootNamespace>lec03prg05tcpechoserversocketserver</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lec-03-prg-01-tcp-echo-server.cpp" />
+    <ClCompile Include="lec-03-prg-05-tcp-echo-server-socketserver.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
